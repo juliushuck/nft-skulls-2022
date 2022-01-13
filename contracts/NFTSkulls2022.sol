@@ -13,7 +13,7 @@ contract NFTSkulls2022 is ERC721, ERC721Enumerable, Ownable {
     uint256 public constant MAX_TOKEN_COUNT = 6;
 
     string public baseUri =
-        "ipfs://QmWygY4L5X4JM85ksnR8sGxACfTpaacSyh2nWL5izQ3MiK/";
+        "ipfs://QmU55S2L6XyDyYCf54z9iXMrn9t3kXsqKLUmQTAd8uNpKX/";
     bool public isSaleActive = false;
     uint256 public mintPrice = 0.001 ether;
     uint256 public maxTokenCountPerTx = 2;

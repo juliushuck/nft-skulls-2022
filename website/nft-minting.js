@@ -1,24 +1,44 @@
 let provider;
 let signer;
+let showConnectWallet;
+let shouldShowConnectWallet = false;
+let showMintNft;
 let shouldShowMintNft = false;
-let errMsg;
+let showErr;
+let errMsgToShow;
+let hasTriedToConnect = false;
 
 const convertToUrl = (ipfsUri) => {
   return "https://gateway.pinata.cloud/ipfs/" + ipfsUri.substring(7);
 };
 
 window.ethereum.addListener("connect", async (res) => {
-  if (res.chainId !== 4) {
-    errMsg = "Please connect to the Rinkeby testnet";
+  if (Number(res.chainId) !== 4) {
+    if (showErr === undefined) {
+      errMsgToShow = "Please connect to the Rinkeby testnet";
+    } else {
+      showErr("Please connect to the Rinkeby testnet");
+    }
+    hasTriedToConnect = true;
     return;
   }
   provider = new ethers.providers.Web3Provider(window.ethereum);
   signer = provider.getSigner();
   account = (await provider.listAccounts())[0];
   if (account === undefined) {
+    if (showConnectWallet === undefined) {
+      shouldShowConnectWallet = true;
+    } else {
+      showConnectWallet();
+    }
     return;
   }
-  shouldShowMintNft = true;
+  if (showMintNft === undefined) {
+    shouldShowMintNft = true;
+  } else {
+    showMintNft();
+  }
+  hasTriedToConnect = true;
 });
 
 window.ethereum.on("accountsChanged", () => {
@@ -45,8 +65,8 @@ $(document).ready(async () => {
   const processingSection = $(".processing__section");
   const processingMsg = $(".processing__msg");
 
-  const errorSection = $(".error__section");
-  const errorMsg = $(".error__msg");
+  const errSection = $(".err__section");
+  const errMsg = $(".err__msg");
 
   const successSection = $(".success__section");
   const successNftImg = $(".success__nft-img");
@@ -54,13 +74,13 @@ $(document).ready(async () => {
   connectWalletSection.hide();
   mintNftSection.hide();
   processingSection.hide();
-  errorSection.hide();
+  errSection.hide();
   successSection.hide();
 
-  const showConnectWallet = () => {
+  showConnectWallet = () => {
     mintNftSection.hide();
     processingSection.hide();
-    errorSection.hide();
+    errSection.hide();
     successSection.hide();
     connectWalletSection.show();
   };
@@ -68,7 +88,7 @@ $(document).ready(async () => {
   showMintNft = () => {
     connectWalletSection.hide();
     processingSection.hide();
-    errorSection.hide();
+    errSection.hide();
     successSection.hide();
     mintNftSection.show();
   };
@@ -76,7 +96,7 @@ $(document).ready(async () => {
   const showProcessing = (msg) => {
     connectWalletSection.hide();
     mintNftSection.hide();
-    errorSection.hide();
+    errSection.hide();
     successSection.hide();
     processingMsg.text(msg);
     processingSection.show();
@@ -86,17 +106,17 @@ $(document).ready(async () => {
     connectWalletSection.hide();
     mintNftSection.hide();
     processingSection.hide();
-    errorSection.hide();
+    errSection.hide();
     successSection.show();
   };
 
-  showError = (msg) => {
+  showErr = (msg) => {
     connectWalletSection.hide();
     mintNftSection.hide();
     processingSection.hide();
     successSection.hide();
-    errorMsg.text(msg);
-    errorSection.show();
+    errMsg.text(msg);
+    errSection.show();
   };
 
   connectWalletButton.click(async () => {
@@ -140,28 +160,46 @@ $(document).ready(async () => {
       );
       const metadata = await (await fetch(convertToUrl(tokenUri))).json();
       successNftImg.attr("src", convertToUrl(metadata.image));
-    } catch (error) {
-      console.log(error);
-      showError(
-        "An error occurred, see the browsers console for more details. " +
-          error.message
+    } catch (err) {
+      console.log(JSON.stringify(err));
+      let errMsg;
+      if (err?.error?.message !== undefined) {
+        errMsg = err.error.message;
+      } else if (err?.reason !== undefined) {
+        console.log(err.reason);
+        errMsg = err.reason;
+      } else if (err?.message !== undefined) {
+        errMsg = err.message;
+      } else {
+        errMsg = "Unknown error";
+      }
+      showErr(
+        "An error occurred: " +
+          errMsg +
+          " (See the browser console for more details)"
       );
     }
   });
 
-  if (shouldShowMintNft) {
+  if (shouldShowConnectWallet === true) {
+    showConnectWallet();
+    return;
+  }
+  if (shouldShowMintNft === true) {
     showMintNft();
     return;
   }
-  if (errMsg !== undefined) {
-    showError(errMsg);
+  if (errMsgToShow !== undefined) {
+    showErr(errMsgToShow);
     return;
   }
   if (window.ethereum === undefined) {
-    showError("Please install MetaMask");
+    showErr("Please install MetaMask");
     return;
   }
-  showConnectWallet();
+  if (hasTriedToConnect === true) {
+    showConnectWallet();
+  }
 });
 
 const contractAddress = "0xeE155718aDEd0855d9cc03B86c4209c9Df55D64B";
