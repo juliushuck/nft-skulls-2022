@@ -16,7 +16,7 @@ contract NFTSkulls2022 is ERC721, ERC721Enumerable, Ownable {
         "ipfs://QmWygY4L5X4JM85ksnR8sGxACfTpaacSyh2nWL5izQ3MiK/";
     bool public isSaleActive = false;
     uint256 public mintPrice = 0.001 ether;
-    uint256 public maxTokenCountPerTransaction = 2;
+    uint256 public maxTokenCountPerTx = 2;
 
     constructor() ERC721("NFTSkulls2022", "NFTS2022") {}
 
@@ -41,10 +41,11 @@ contract NFTSkulls2022 is ERC721, ERC721Enumerable, Ownable {
         mintPrice = newPrice;
     }
 
-    function setMaxTokenCountPerTransaction(
-        uint256 newMaxTokenCountPerTransaction
-    ) external onlyOwner {
-        maxTokenCountPerTransaction = newMaxTokenCountPerTransaction;
+    function setMaxTokenCountPerTx(uint256 newMaxTokenCountPerTx)
+        external
+        onlyOwner
+    {
+        maxTokenCountPerTx = newMaxTokenCountPerTx;
     }
 
     function reserveTokens(address to, uint256 amount) external onlyOwner {
@@ -59,7 +60,7 @@ contract NFTSkulls2022 is ERC721, ERC721Enumerable, Ownable {
         checkIsSaleActive
     {
         require(
-            amount > 0 && amount <= maxTokenCountPerTransaction,
+            amount > 0 && amount <= maxTokenCountPerTx,
             "Amount of tokens exceeds max tokens per transaction"
         );
         require(

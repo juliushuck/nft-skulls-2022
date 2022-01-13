@@ -99,14 +99,15 @@ $(document).ready(async () => {
 
   mintNftForm.submit(async (event) => {
     event.preventDefault();
-    processingSection.show();
     const amountString = mintNftAmountTextField.val();
     const amount = Number.isNaN(amountString)
       ? undefined
       : Number(amountString);
     if (amount === undefined) {
       alert("Please enter a valid amount");
+      return;
     }
+    processingSection.show("Gethering details...");
     try {
       const contract = new ethers.Contract(
         contractAddress,
