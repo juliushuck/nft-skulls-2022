@@ -5,7 +5,7 @@ $(document).ready(async () => {
   const mintNftSection = $(".mint-nft__section");
   const mintNftForm = $(".mint-nft__form");
   const mintNftAmountTextField = $(".mint-nft__form input[name='amount']");
-  const mintNftBtn = $(".mint-nft__form button");
+  const mintNftBtn = $(".mint-nft__form a");
 
   const processingSection = $(".processing__section");
   const processingMsg = $(".processing__msg");
