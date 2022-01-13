@@ -1,0 +1,26 @@
+{
+    "description": "This is skull #4",
+    "external_url": "https://nft-skulls-2022.webflow.io/details?id=4",
+    "image": "ipfs://Qmem36TWdwvEUa2NCb4x3FTsv4W86zzhFLzEoVeqpPBZjK",
+    "name": "Skull #4",
+    "attributes": [
+        {
+            "trait_type": "Eye Color",
+            "value": "Orange"
+        },
+        {
+            "trait_type": "Background Color",
+            "value": "Pink"
+        },
+        {
+            "display_type": "boost_percentage",
+            "trait_type": "Scarry",
+            "value": 80
+        },
+        {
+            "display_type": "number",
+            "trait_type": "Index",
+            "value": 4
+        }
+    ]
+}

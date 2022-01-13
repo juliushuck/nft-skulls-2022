@@ -1,0 +1,26 @@
+{
+    "description": "This is skull #3",
+    "external_url": "https://nft-skulls-2022.webflow.io/details?id=3",
+    "image": "ipfs://QmYp3tPFEQttGkhWgyogo57JD2EooNVywCNQ2TUKvEaTwd",
+    "name": "Skull #3",
+    "attributes": [
+        {
+            "trait_type": "Eye Color",
+            "value": "Red"
+        },
+        {
+            "trait_type": "Background Color",
+            "value": "Pink"
+        },
+        {
+            "display_type": "boost_percentage",
+            "trait_type": "Scarry",
+            "value": 60
+        },
+        {
+            "display_type": "number",
+            "trait_type": "Index",
+            "value": 3
+        }
+    ]
+}

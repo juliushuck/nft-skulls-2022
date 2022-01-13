@@ -1,0 +1,26 @@
+{
+    "description": "This is skull #0.",
+    "external_url": "https://nft-skulls-2022.webflow.io/details?id=0",
+    "image": "ipfs://QmT4GXsob5k9LJ2rQpVTKHbu3ZPPp3g89WbTFf7vSX575M",
+    "name": "Skull #0",
+    "attributes": [
+        {
+            "trait_type": "Eye Color",
+            "value": "Blue"
+        },
+        {
+            "trait_type": "Background Color",
+            "value": "Blue"
+        },
+        {
+            "display_type": "boost_percentage",
+            "trait_type": "Scarry",
+            "value": 20
+        },
+        {
+            "display_type": "number",
+            "trait_type": "Index",
+            "value": 0
+        }
+    ]
+}
