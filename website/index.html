@@ -41,12 +41,12 @@
   </head>
 
   <body class="body">
-    <div class="container">
+    <div class="container" style="max-width: 350px">
       <h2 class="heading">Mint NFT Skulls 2022</h2>
-      <div class="connect-wallet__section">
+      <div class="connect-wallet__section" style="display: none">
         <a href="#" class="btn w-button">Connect Wallet</a>
       </div>
-      <div class="mint-nft__section">
+      <div class="mint-nft__section" style="display: none">
         <div class="w-form">
           <form
             id="wf-form-"
@@ -79,13 +79,13 @@
           </div>
         </div>
       </div>
-      <div class="processing__section">
+      <div class="processing__section" style="display: none">
         <p class="processing__msg">Processing...</p>
       </div>
-      <div class="error__section">
+      <div class="error__section" style="display: none">
         <p class="error__msg">An unknown error has occurred.</p>
       </div>
-      <div class="success__section">
+      <div class="success__section" style="display: none">
         <p class="success_msg">Minted successfully.</p>
         <img
           src="https://uploads-ssl.webflow.com/plugins/Basic/assets/placeholder.60f9b1840c.svg"
@@ -102,7 +102,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
-    <script src="index.js"></script>
+    <script src="nft-minting.js"></script>
     <!--[if lte IE 9
       ]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script
     ><![endif]-->
