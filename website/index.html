@@ -41,15 +41,15 @@
   </head>
 
   <body class="body">
-    <div class="container" style="max-width: 350px">
+    <div class="container" style="max-width: 350px; overflow: hidden">
       <h2 class="heading">Mint NFT Skulls 2022</h2>
       <div class="connect-wallet__section" style="display: none">
         <a href="#" class="btn w-button">Connect Wallet</a>
       </div>
       <div class="mint-nft__section" style="display: none">
         <form class="mint-nft__form">
-          <label for="amount" class="field-label">Amount</label
-          ><input
+          <label for="amount" class="field-label">Amount</label>
+          <input
             type="text"
             class="text-field w-input"
             maxlength="256"
@@ -57,12 +57,8 @@
             data-name="amount"
             placeholder=""
             id="amount"
-          /><input
-            type="submit"
-            value="Mint"
-            data-wait="Please wait..."
-            class="btn w-button"
           />
+          <a class="btn w-button">Mint</a>
         </form>
       </div>
       <div class="processing__section" style="display: none">

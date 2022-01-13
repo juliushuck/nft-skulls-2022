@@ -1,3 +1,38 @@
+let provider;
+let signer;
+let isAlreadyConnected = false;
+let showMintNft;
+
+window.ethereum.addListener("connect", async (response) => {
+  const chainId = parseInt(response.chainId);
+  if (chainId !== 4) {
+    showError("Please connect to the Rinkeby testnet");
+    return;
+  }
+  provider = new ethers.providers.Web3Provider(window.ethereum);
+  signer = provider.getSigner();
+  account = (await provider.listAccounts())[0];
+  if (account === undefined) {
+    return;
+  }
+  isAlreadyConnected = true;
+  if (showMintNft !== undefined) {
+    showMintNft();
+  }
+});
+
+window.ethereum.on("accountsChanged", () => {
+  window.location.reload();
+});
+
+window.ethereum.on("chainChanged", () => {
+  window.location.reload();
+});
+
+window.ethereum.on("disconnect", () => {
+  window.location.reload();
+});
+
 $(document).ready(async () => {
   const connectWalletSection = $(".connect-wallet__section");
   const connectWalletButton = $(".connect-wallet__section .btn");
@@ -30,7 +65,7 @@ $(document).ready(async () => {
     connectWalletSection.show();
   };
 
-  const showMintNft = () => {
+  showMintNft = () => {
     connectWalletSection.hide();
     processingSection.hide();
     errorSection.hide();
@@ -64,36 +99,6 @@ $(document).ready(async () => {
     errorSection.show();
   };
 
-  let provider;
-  let signer;
-
-  window.ethereum.addListener("connect", async (response) => {
-    const chainId = parseInt(response.chainId);
-    if (chainId !== 4) {
-      showError("Please connect to the Rinkeby testnet");
-      return;
-    }
-    provider = new ethers.providers.Web3Provider(window.ethereum);
-    signer = provider.getSigner();
-    account = (await provider.listAccounts())[0];
-    if (account === undefined) {
-      return;
-    }
-    showMintNft();
-  });
-
-  window.ethereum.on("accountsChanged", () => {
-    window.location.reload();
-  });
-
-  window.ethereum.on("chainChanged", () => {
-    window.location.reload();
-  });
-
-  window.ethereum.on("disconnect", () => {
-    window.location.reload();
-  });
-
   connectWalletButton.click(async () => {
     window.ethereum.request({ method: "eth_requestAccounts" });
   });
@@ -104,16 +109,17 @@ $(document).ready(async () => {
 
   mintNftBtn.click(async (event) => {
     event.preventDefault();
-    const amountString = mintNftAmountTextField.val();
-    const amount = Number.isNaN(amountString)
-      ? undefined
-      : Number(amountString);
-    if (amount === undefined) {
-      alert("Please enter a valid amount");
-      return;
-    }
-    processingSection.show("Gethering details...");
     try {
+      const amountString = mintNftAmountTextField.val();
+      const amount = Number.isNaN(amountString)
+        ? undefined
+        : Number(amountString);
+      console.log(amount);
+      if (amount === undefined || amount <= 0) {
+        alert("Please enter a valid amount");
+        return;
+      }
+      processingSection.show("Gethering details...");
       const contract = new ethers.Contract(
         contractAddress,
         contractAbi,
@@ -138,9 +144,18 @@ $(document).ready(async () => {
       const metadata = await (await fetch(tokenUri)).json();
       successNftImg.attr("src", metadata.image);
     } catch (error) {
-      showError("An error occurred: " + error.message);
+      console.log(error);
+      showError(
+        "An error occurred, see the browsers console for more details. " +
+          error.message
+      );
     }
   });
+
+  if (isAlreadyConnected === true) {
+    showMintNft();
+    return;
+  }
 
   try {
     if (window.ethereum === undefined) {
@@ -151,7 +166,11 @@ $(document).ready(async () => {
     signer = provider.getSigner();
     showConnectWallet();
   } catch (error) {
-    showError("An error occurred: " + error.message);
+    console.log(error);
+    showError(
+      "An error occurred, see the browsers console for more details. " +
+        error.message
+    );
   }
 });
 
