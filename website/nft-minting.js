@@ -5,6 +5,7 @@ $(document).ready(async () => {
   const mintNftSection = $(".mint-nft__section");
   const mintNftForm = $(".mint-nft__form");
   const mintNftAmountTextField = $(".mint-nft__form input[name='amount']");
+  const mintNftBtn = $(".mint-nft__form button");
 
   const processingSection = $(".processing__section");
   const processingMsg = $(".processing__msg");
@@ -97,7 +98,7 @@ $(document).ready(async () => {
     window.ethereum.request({ method: "eth_requestAccounts" });
   });
 
-  mintNftForm.submit(async (event) => {
+  mintNftBtn.click(async (event) => {
     event.preventDefault();
     const amountString = mintNftAmountTextField.val();
     const amount = Number.isNaN(amountString)
