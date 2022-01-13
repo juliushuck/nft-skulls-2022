@@ -3,6 +3,7 @@ $(document).ready(async () => {
   const connectWalletButton = $(".connect-wallet__section .btn");
 
   const mintNftSection = $(".mint-nft__section");
+  const mintNftForm = $(".mint-nft__form");
   const mintNftAmountTextField = $(".mint-nft__form input[name='amount']");
   const mintNftBtn = $(".mint-nft__form a");
 
@@ -95,6 +96,10 @@ $(document).ready(async () => {
 
   connectWalletButton.click(async () => {
     window.ethereum.request({ method: "eth_requestAccounts" });
+  });
+
+  mintNftForm.submit(async (e) => {
+    e.preventDefault();
   });
 
   mintNftBtn.click(async (event) => {
