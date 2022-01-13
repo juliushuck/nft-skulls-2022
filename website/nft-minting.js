@@ -130,10 +130,12 @@ $(document).ready(async () => {
       showProcessing("Minting NFT...");
       const txResult = await tx.wait();
       showSuccess();
-      const tokenUri2 = await contract.tokenURI(
+      console.log(txResult);
+      const tokenUri = await contract.tokenURI(
         Number(txResult.events[0].args[2])
       );
-      const metadata = await (await fetch(tokenUri2)).json();
+      console.log(tokenUri);
+      const metadata = await (await fetch(tokenUri)).json();
       successNftImg.attr("src", metadata.image);
     } catch (error) {
       showError("An error occurred: " + error.message);

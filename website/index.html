@@ -47,37 +47,23 @@
         <a href="#" class="btn w-button">Connect Wallet</a>
       </div>
       <div class="mint-nft__section" style="display: none">
-        <div class="w-form">
-          <form
-            id="wf-form-"
-            name="wf-form-"
-            data-name=""
-            method="get"
-            class="mint-nft__form"
-          >
-            <label for="amount" class="field-label">Amount</label
-            ><input
-              type="text"
-              class="text-field w-input"
-              maxlength="256"
-              name="amount"
-              data-name="amount"
-              placeholder=""
-              id="amount"
-            /><input
-              type="submit"
-              value="Mint"
-              data-wait="Please wait..."
-              class="btn w-button"
-            />
-          </form>
-          <div class="w-form-done">
-            <div>Thank you! Your submission has been received!</div>
-          </div>
-          <div class="w-form-fail">
-            <div>Oops! Something went wrong while submitting the form.</div>
-          </div>
-        </div>
+        <form class="mint-nft__form">
+          <label for="amount" class="field-label">Amount</label
+          ><input
+            type="text"
+            class="text-field w-input"
+            maxlength="256"
+            name="amount"
+            data-name="amount"
+            placeholder=""
+            id="amount"
+          /><input
+            type="submit"
+            value="Mint"
+            data-wait="Please wait..."
+            class="btn w-button"
+          />
+        </form>
       </div>
       <div class="processing__section" style="display: none">
         <p class="processing__msg">Processing...</p>
