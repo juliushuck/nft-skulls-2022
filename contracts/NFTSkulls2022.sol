@@ -10,7 +10,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 contract NFTSkulls2022 is ERC721, ERC721Enumerable, Ownable {
     using SafeMath for uint256;
 
-    uint256 public constant MAX_TOKEN_COUNT = 5;
+    uint256 public constant MAX_TOKEN_COUNT = 6;
 
     string public baseUri =
         "ipfs://QmWygY4L5X4JM85ksnR8sGxACfTpaacSyh2nWL5izQ3MiK/";

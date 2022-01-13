@@ -479,46 +479,6 @@
         "IERC165"
       ]
     },
-    "/Users/huckjulius/Projects/nft-skulls-2022/contracts/NFTSkulls2020.sol": {
-      "lastModificationDate": 1642022046126,
-      "contentHash": "a10aa0aa4b2370431a33990d2cdad081",
-      "sourceName": "contracts/NFTSkulls2020.sol",
-      "solcConfig": {
-        "version": "0.8.0",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
-        "@openzeppelin/contracts/utils/Counters.sol",
-        "@openzeppelin/contracts/access/Ownable.sol",
-        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "NFTSkulls2020"
-      ]
-    },
     "/Users/huckjulius/Projects/nft-skulls-2022/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
       "lastModificationDate": 1642022060843,
       "contentHash": "ead7082e39cf31875ff89b22f473500d",
@@ -958,8 +918,8 @@
       ]
     },
     "/Users/huckjulius/Projects/nft-skulls-2022/contracts/NFTSkulls2022.sol": {
-      "lastModificationDate": 1642038191247,
-      "contentHash": "d31e4e2d2ce19e3bf5ae7e7a55945303",
+      "lastModificationDate": 1642097501370,
+      "contentHash": "933a3870df85d01b39f8cb97c10e31ef",
       "sourceName": "contracts/NFTSkulls2022.sol",
       "solcConfig": {
         "version": "0.8.0",
@@ -989,8 +949,7 @@
         "@openzeppelin/contracts/access/Ownable.sol",
         "@openzeppelin/contracts/utils/math/SafeMath.sol",
         "@openzeppelin/contracts/utils/Address.sol",
-        "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol",
-        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol"
+        "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol"
       ],
       "versionPragmas": [
         "^0.8.0"

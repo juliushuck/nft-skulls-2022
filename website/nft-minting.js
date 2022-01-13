@@ -3,9 +3,8 @@ let signer;
 let isAlreadyConnected = false;
 let showMintNft;
 
-window.ethereum.addListener("connect", async (response) => {
-  const chainId = parseInt(response.chainId);
-  if (chainId !== 4) {
+window.ethereum.addListener("connect", async (res) => {
+  if (res.chainId !== 4) {
     showError("Please connect to the Rinkeby testnet");
     return;
   }
@@ -103,8 +102,8 @@ $(document).ready(async () => {
     window.ethereum.request({ method: "eth_requestAccounts" });
   });
 
-  mintNftForm.submit(async (e) => {
-    e.preventDefault();
+  mintNftForm.submit(async (event) => {
+    event.preventDefault();
   });
 
   mintNftBtn.click(async (event) => {
@@ -114,7 +113,6 @@ $(document).ready(async () => {
       const amount = Number.isNaN(amountString)
         ? undefined
         : Number(amountString);
-      console.log(amount);
       if (amount === undefined || amount <= 0) {
         alert("Please enter a valid amount");
         return;
@@ -136,13 +134,13 @@ $(document).ready(async () => {
       showProcessing("Minting NFT...");
       const txResult = await tx.wait();
       showSuccess();
-      console.log(txResult);
       const tokenUri = await contract.tokenURI(
         Number(txResult.events[0].args[2])
       );
-      console.log(tokenUri);
-      const metadata = await (await fetch(tokenUri)).json();
-      successNftImg.attr("src", metadata.image);
+      const tokenUrl = tokenUri.substring(7);
+      const metadata = await (await fetch(tokenUrl)).json();
+      const imgUrl = metadata.image.substring(7);
+      successNftImg.attr("src", imgUrl);
     } catch (error) {
       console.log(error);
       showError(
