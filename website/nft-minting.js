@@ -1,7 +1,7 @@
 let provider;
 let signer;
-let isAlreadyConnected = false;
-let showMintNft;
+let shouldShowMintNft = false;
+let errMsg;
 
 const convertToUrl = (ipfsUri) => {
   return "https://gateway.pinata.cloud/ipfs/" + ipfsUri.substring(7);
@@ -9,7 +9,7 @@ const convertToUrl = (ipfsUri) => {
 
 window.ethereum.addListener("connect", async (res) => {
   if (res.chainId !== 4) {
-    showError("Please connect to the Rinkeby testnet");
+    errMsg = "Please connect to the Rinkeby testnet";
     return;
   }
   provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -18,10 +18,7 @@ window.ethereum.addListener("connect", async (res) => {
   if (account === undefined) {
     return;
   }
-  isAlreadyConnected = true;
-  if (showMintNft !== undefined) {
-    showMintNft();
-  }
+  shouldShowMintNft = true;
 });
 
 window.ethereum.on("accountsChanged", () => {
@@ -93,7 +90,7 @@ $(document).ready(async () => {
     successSection.show();
   };
 
-  const showError = (msg) => {
+  showError = (msg) => {
     connectWalletSection.hide();
     mintNftSection.hide();
     processingSection.hide();
@@ -152,26 +149,19 @@ $(document).ready(async () => {
     }
   });
 
-  if (isAlreadyConnected === true) {
+  if (shouldShowMintNft) {
     showMintNft();
     return;
   }
-
-  try {
-    if (window.ethereum === undefined) {
-      showError("Please install MetaMask");
-      return;
-    }
-    provider = new ethers.providers.Web3Provider(ethereum);
-    signer = provider.getSigner();
-    showConnectWallet();
-  } catch (error) {
-    console.log(error);
-    showError(
-      "An error occurred, see the browsers console for more details. " +
-        error.message
-    );
+  if (errMsg !== undefined) {
+    showError(errMsg);
+    return;
   }
+  if (window.ethereum === undefined) {
+    showError("Please install MetaMask");
+    return;
+  }
+  showConnectWallet();
 });
 
 const contractAddress = "0x9a7fCA1279411682ce780EBd9FF625174163761A";
