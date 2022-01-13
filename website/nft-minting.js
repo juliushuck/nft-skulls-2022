@@ -164,7 +164,7 @@ $(document).ready(async () => {
   showConnectWallet();
 });
 
-const contractAddress = "0x9a7fCA1279411682ce780EBd9FF625174163761A";
+const contractAddress = "0xeE155718aDEd0855d9cc03B86c4209c9Df55D64B";
 const contractAbi = [
   { inputs: [], stateMutability: "nonpayable", type: "constructor" },
   {
