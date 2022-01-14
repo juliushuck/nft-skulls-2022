@@ -77,12 +77,13 @@ contract NFTSkulls2022 is ERC721, ERC721Enumerable, Ownable {
         }
     }
 
-    function withdraw(uint256 amount) external onlyOwner {
+    // TODO check mem
+    function withdraw(address to, uint256 amountInWei) external onlyOwner {
         require(
-            address(this).balance >= amount,
+            address(this).balance >= amountInWei,
             "Not enought ether to withdraw"
         );
-        Address.sendValue(payable(msg.sender), amount);
+        Address.sendValue(payable(to), amountInWei);
     }
 
     function _baseURI() internal view override(ERC721) returns (string memory) {

@@ -918,8 +918,8 @@
       ]
     },
     "/Users/huckjulius/Projects/nft-skulls-2022/contracts/NFTSkulls2022.sol": {
-      "lastModificationDate": 1642097501370,
-      "contentHash": "933a3870df85d01b39f8cb97c10e31ef",
+      "lastModificationDate": 1642155676548,
+      "contentHash": "e1dab67d041ca6410ff862eccb8ebe61",
       "sourceName": "contracts/NFTSkulls2022.sol",
       "solcConfig": {
         "version": "0.8.0",
