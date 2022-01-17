@@ -1,0 +1,8 @@
+{
+    "name": "NFT Skulls 2020",
+    "description": "This is the NFT Skulls 2020 Collection",
+    "image": "ipfs://QmdZhvgAz63NCQ2ihphbGa4jotWSQdHYGMX5CpnpjfC7zv",
+    "external_link": "https://nft-skulls-2022.webflow.io",
+    "seller_fee_basis_points": 100,
+    "fee_recipient": "0xfe1a65A497A9eaFAAe1b26e342050489004Fa54B"
+}

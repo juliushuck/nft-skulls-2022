@@ -918,8 +918,8 @@
       ]
     },
     "/Users/huckjulius/Projects/nft-skulls-2022/contracts/NFTSkulls2022.sol": {
-      "lastModificationDate": 1642155676548,
-      "contentHash": "e1dab67d041ca6410ff862eccb8ebe61",
+      "lastModificationDate": 1642253370520,
+      "contentHash": "08b7218b231da29e0e3979359ed9fd64",
       "sourceName": "contracts/NFTSkulls2022.sol",
       "solcConfig": {
         "version": "0.8.0",
@@ -945,11 +945,11 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "@openzeppelin/contracts/access/Ownable.sol",
-        "@openzeppelin/contracts/utils/math/SafeMath.sol",
+        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "@openzeppelin/contracts/utils/Address.sol",
-        "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol"
+        "@openzeppelin/contracts/utils/Counters.sol",
+        "@openzeppelin/contracts/utils/Strings.sol"
       ],
       "versionPragmas": [
         "^0.8.0"
